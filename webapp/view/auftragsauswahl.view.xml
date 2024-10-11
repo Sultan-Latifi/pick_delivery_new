@@ -1,0 +1,79 @@
+<mvc:View controllerName="com.mindsquare.gdmvt.remove.gooiss.controller.auftragsauswahl" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:core="sap.ui.core" xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+	<App id="GR_App">
+		<Page title="{i18n>goodsremoval}" showNavButton="false" showHeader="true">
+			
+			<!--<smartTable:SmartTable id="LineItemsSmartTable" entitySet="DeliverySet" smartFilterId="smartFilterBar" tableType="Table"-->
+			<!--	useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Line Items"-->
+			<!--	showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding"-->
+			<!--	enableAutoColumnWidth="true" editTogglable="true" initiallyVisibleFields="Vbeln,Kodat,Erdat,Ernam"-->
+			<!--	requestAtLeastFields="Vbeln,Kodat,Erdat,Ernam"></smartTable:SmartTable>-->
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="DeliverySet" filterBarExpanded="true">
+						<smartFilterBar:controlConfiguration>
+							<smartFilterBar:ControlConfiguration key="Vbeln"  visibleInAdvancedArea="true">
+								<smartFilterBar:customControl>
+									<Input id="customInput" customData:hasValue="true" width="300px"/>										
+								</smartFilterBar:customControl>
+							</smartFilterBar:ControlConfiguration>
+						</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="smartTableGI" tableType="ResponsiveTable" smartFilterId="smartFilterBar" entitySet="DeliverySet" header="{i18n>StartseiteSmartTableHeader}"
+				showRowCount="true" useExportToExcel="true" enableAutoBinding="true" useVariantManagement="true" showVariantManagement="true"
+				showFullScreenButton="true" initiallyVisibleFields="Vbeln,Kodat,Erdat,Ernam" requestAtLeastFields="Vbeln,Kodat,Erdat,Ernam" beforeRebindTable="onBeforeRebindTable">
+				<Table noDataText="{i18n>OverviewSmartTableNoData}" width="auto" sticky="ColumnHeaders" mode="None" growing="true"
+					growingScrollToLoad="true" growingThreshold="50">
+					<columns>
+						<Column >
+							<customData>
+								<core:CustomData key="p13nData" value='\{"columnKey": "Vbeln","leadingProperty": "Vbeln","sortProperty": "Vbeln","columnIndex":"0"}'/>
+							</customData>
+							
+							<Text text="fffffffffffffffff"/>
+							<Text text="{/DeliverySet/Vbeln/#@sap:label}"/>
+						</Column>
+						<Column >
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Kodat","leadingProperty": "Kodat","sortProperty": "Kodat","columnIndex":"1","type": "date"}'/>
+							</customData>
+							<Text text="{/DeliverySet/Kodat/#@sap:label}"/>
+						</Column>
+						<Column >
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Erdat","leadingProperty": "Erdat","sortProperty": "Erdat","columnIndex":"2","type": "date"}'/>
+							</customData>
+							<Text text="{/DeliverySet/Erdat/#@sap:label}"/>
+						</Column>
+						<Column >
+							<customData>
+								<core:CustomData key="p13nData" value='\{"columnKey": "Ernam","leadingProperty": "Ernam","sortProperty": "Ernam","columnIndex":"3"}'/>
+							</customData>
+							<Text text="{/DeliverySet/Ernam/#@sap:label}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press="navToDetail">
+							<FlexBox direction="Column" alignItems="Start">
+								<Title text="{Vbeln}" class="boldText"/>
+							</FlexBox>
+							<Text text="{ path: 'Kodat', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd.MM.yy', displayFormat: 'Date', UTC:true } }"/>
+							<Text text="{ path: 'Erdat', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd.MM.yy', displayFormat: 'Date', UTC:true } }"/>
+							<Text text="{Ernam}"/>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+			<!--<footer>-->
+			<!--	<Bar class=" sapContrast sapContrastPlus">-->
+			<!--		<contentLeft width="100%">-->
+			<!--			<Button id="btnSettings" class="sapUiLargeMargins" type="Emphasized" icon="sap-icon://wrench" press="onUserSettingsPress"/>-->
+			<!--		</contentLeft>-->
+			<!--		<contentRight>-->
+			<!--			<Button id="btnSearch" text="{i18n>choose}" class="sapUiLargeMargins" icon="sap-icon://order-status" type="Accept" press="onBtnSubmitPress"/>-->
+			<!--		</contentRight>-->
+			<!--	</Bar>-->
+			<!--</footer>-->
+		</Page>
+	</App>
+</mvc:View>
